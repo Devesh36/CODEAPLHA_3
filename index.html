@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Issue Tracker</h1>
+
+        <!-- Issue List -->
+        <div id="issues-container">
+            {% for issue in issues %}
+            <div class="issue">
+                <h3>{{ issue.title }}</h3>
+                <p>{{ issue.description }}</p>
+                <p>Priority: {{ issue.priority }} | Status: {{ issue.status }}</p>
+                <p>Assigned to: {{ issue.assigned_to }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Create Issue Form -->
+        <div id="form-container">
+            <h2>Create Issue</h2>
+            <form id="issue-form">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+
+                <label for="assignedTo">Assigned To:</label>
+                <input type="text" id="assignedTo" name="assignedTo">
+
+                <button type="submit">Create Issue</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
